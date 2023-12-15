@@ -1,0 +1,78 @@
+---
+flow: Sentiment Analysis
+recurring: 
+tasks:
+- input: python3 train.py
+  params:
+  - key: epochs
+    type: categorical
+    value:
+    - '5'
+    - '10'
+  - key: batch_size
+    type: categorical
+    value:
+    - '128'
+    - '256'
+  computes:
+  - large
+  image: cnvrg:v5.0
+  description: 
+  type: exec
+  git_commit: 
+  git_branch: 
+  mount_folders: []
+  icon: keras
+  library: 
+  output_dir: output
+  confirmation: false
+  title: Train
+  top: 133
+  left: 99
+  conditions: []
+- title: Sentiment API
+  top: 121
+  left: 350
+  description: 
+  conditions:
+  - target: 0.0
+    task: 
+    objective: max
+    tag_key: test_accuracy
+    value: ''
+  type: deploy
+  confirmation: false
+  kind: webserver
+  endpoint_title: sentiment-service
+  function_name: predict
+  file_name: predict.py
+  env_setup: python_3
+  min_replica: 1
+  max_replica: 1
+  flask_config:
+  - key: ''
+    value: ''
+  nginx_config:
+  - key: ''
+    value: ''
+  gunicorn_config:
+  - key: ''
+    value: ''
+  accept_files: false
+  computes:
+  - medium
+  git_commit: 
+  git_branch: 
+  image: cnvrg:v5.0
+  kafka_brokers:
+  - ''
+  kafka_input_topics:
+  - ''
+  kafka_output_topics:
+  - ''
+  prep_file: ''
+  prep_function: ''
+relations:
+- from: Train
+  to: Sentiment API
+

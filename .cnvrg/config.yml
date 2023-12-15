@@ -1,6 +1,5 @@
 ---
-:project_name: git-diff-proj
-:project_slug: git-diff-proj
+:project_name: imdb
+:project_slug: imdb
 :owner: cnvrg
 :git: true
-:is_git: true

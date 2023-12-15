@@ -3,3 +3,4 @@
 :project_slug: git-diff-proj
 :owner: cnvrg
 :git: true
+:is_git: true
